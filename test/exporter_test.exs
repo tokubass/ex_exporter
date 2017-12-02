@@ -14,10 +14,12 @@ defmodule ExporterTest do
 
   test "default_export" do
     use My
-    assert "a" == a()
-    assert "b" == b(1)
-
+    assert [a: 0, b: 1] = __ENV__.functions[My]
+    assert "a" = a()
+    assert "b" = b(1)
+    
     use My, [c: 0]
-    assert "c" == c()
+    assert [c: 0] = __ENV__.functions[My]
+    assert "c" = c()
    end
 end

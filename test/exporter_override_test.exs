@@ -23,12 +23,16 @@ defmodule ExporterOverrideTest do
 
   test "default_export" do
     use MyOverride
-    assert "a" == a()
-    assert "b" == b(1)
+    assert [a: 0, b: 1] = __ENV__.functions[MyOverride]
+    assert [min: 1] = __ENV__.functions[Enum]
+    assert "a" = a()
+    assert "b" = b(1)
     assert 3 = min([4,5,3])
 
-    use My, [c: 0]
-    assert "c" == c()
+    use MyOverride, [c: 0]
+    assert [c: 0] = __ENV__.functions[MyOverride]
+    assert [min: 1] = __ENV__.functions[Enum]
+    assert "c" = c()
     assert 3 = min([4,5,3])
    end
 end
