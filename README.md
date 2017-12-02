@@ -17,11 +17,11 @@ Quickly import library
 
   defmodule MyApp do
     use MyModule
-    a()  # ok
-    b(1) # ok
+    a()  # ok. default import
+    b(1) # ok. default import
     c()  # error
 
-    use My, [c: 0]
+    use MyModule, [c: 0]
     a()  # error
     b(1) # error
     c()  # ok

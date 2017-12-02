@@ -23,7 +23,7 @@ defmodule Exporter do
         b(1) # ok
         c()  # error
 
-        use My, [c: 0]
+        use MyModule, [c: 0]
         a()  # error
         b(1) # error
         c()  # ok
