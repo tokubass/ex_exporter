@@ -5,6 +5,13 @@ defmodule Exporter.Mixfile do
     [app: :exporter,
      version: "0.1.0",
      elixir: "~> 1.4",
+     description: "On the library side, you can specify functions and macros that the caller can use by default",
+     package: [
+       maintainers: ["tokubass"],
+       licenses: ["This library is free software"],
+       links: %{"GitHub" => "https://github.com/tokubass/ex_exporter"}
+     ],
+
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
