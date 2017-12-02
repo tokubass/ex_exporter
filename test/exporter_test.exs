@@ -1,6 +1,7 @@
 defmodule My do
 
   use Exporter, default: [a: 0, b: 1]
+
   def a, do: "a"
   def b(_), do: "b"
   def c, do: "c"

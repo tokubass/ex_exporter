@@ -1,11 +1,11 @@
 defmodule Exporter do
 
   @moduledoc """
-  Documentation for Exporter.
+  Quickly import library
   """
 
   @doc """
-  xxx
+  Quickly import library
 
       defmodule MyModule do
 
@@ -29,11 +29,28 @@ defmodule Exporter do
         c()  # ok
       end
 
+      # allow override
+
+      defmodule MyModule do
+
+        use Exporter, default: [a: 0, b: 1]
+
+        defmacro __using__(opt)  do
+          ast = super(opt)
+          quote do
+            import Enum, only: [min: 1]
+            unquote(ast)
+          end
+        end
+
+      end
+
   """
 
   defmacro __using__(exporter_opt) do
     default_export = Keyword.get(exporter_opt, :default, [])
     quote do
+
       defmacro __using__(only_list) do
         default_export = unquote(default_export)
         case Enum.empty?(only_list) do
@@ -47,6 +64,9 @@ defmodule Exporter do
             end
         end
       end
+
+      defoverridable [__using__: 1]
     end
   end
+
 end

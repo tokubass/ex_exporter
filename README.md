@@ -1,6 +1,49 @@
 # Exporter
 
-**TODO: Add description**
+Quickly import library
+
+## Examples
+
+```elixir
+
+  defmodule MyModule do
+    use Exporter, default: [a: 0, b: 1]
+
+    def a, do: "a"
+    def b(_), do: "b"
+    def c, do: "c"
+
+  end
+
+  defmodule MyApp do
+    use MyModule
+    a()  # ok
+    b(1) # ok
+    c()  # error
+
+    use My, [c: 0]
+    a()  # error
+    b(1) # error
+    c()  # ok
+  end
+
+  # allow override
+
+  defmodule MyModule do
+
+    use Exporter, default: [a: 0, b: 1]
+
+    defmacro __using__(opt)  do
+      ast = super(opt)
+      quote do
+        import Enum, only: [min: 1]
+        unquote(ast)
+      end
+    end
+
+  end
+
+```
 
 ## Installation
 
