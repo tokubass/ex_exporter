@@ -1,6 +1,6 @@
 # Exporter
 
-Quickly import library
+On the library side, you can specify functions and macros that the caller can use by default.
 
 ## Examples
 

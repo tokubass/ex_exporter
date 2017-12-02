@@ -1,11 +1,7 @@
 defmodule Exporter do
 
   @moduledoc """
-  Quickly import library
-  """
-
-  @doc """
-  Quickly import library
+  On the library side, you can specify functions and macros that the caller can use by default.
 
       defmodule MyModule do
 
@@ -47,6 +43,8 @@ defmodule Exporter do
 
   """
 
+  @doc false
+  
   defmacro __using__(exporter_opt) do
     default_export = Keyword.get(exporter_opt, :default, [])
     quote do
